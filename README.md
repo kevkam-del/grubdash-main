@@ -1,69 +1,76 @@
+# grub-dash-project
 
-# **GrubDash API**
+## Overview:
+The GrubDash project uses an API using Express for a food delivery service company to list all of the dishes and orders, find individual dishes and orders requested by users, create new dishes and orders, update specific dishes and orders, and terminate certain orders depending on the order's status.
 
-## **Project Overview**
-The **GrubDash API** was developed as part of the Thinkful curriculum to manage dishes and orders for a food delivery service. This project demonstrates the implementation of **RESTful API principles** and **complex validation** using **Node.js** and **Express.js**. The API supports the creation, reading, updating, and deleting of dishes and orders, following proper REST architecture.
+## Technology
 
-## **Key Features**
-- **CRUD Operations**: Complete support for Create, Read, Update, and Delete functionality for dishes and orders.
-- **Data Validation**: Ensures that all required fields are provided and valid, such as `name`, `description`, `price`, and `quantity`.
-- **Error Handling**: Comprehensive error handling for invalid or missing data.
-- **Express.js Middleware**: Efficient request processing using modular middleware functions.
-- **RESTful Design**: The API is designed to follow RESTful principles, making it scalable and maintainable.
+### Built with:
+  * Express
+  * JavaScript ES6
+  * Jest and SuperTest used for testing
 
-## **API Endpoints**
 
-### **Dishes Routes**
-- **GET /dishes**: Retrieve a list of all dishes.
-- **POST /dishes**: Add a new dish.
-- **GET /dishes/:dishId**: Retrieve a specific dish by its ID.
-- **PUT /dishes/:dishId**: Update a dish by its ID.
+## app.js
+Contains the Express application.
 
-### **Orders Routes**
-- **GET /orders**: Retrieve a list of all orders.
-- **POST /orders**: Add a new order.
-- **GET /orders/:orderId**: Retrieve a specific order by its ID.
-- **PUT /orders/:orderId**: Update an order by its ID.
-- **DELETE /orders/:orderId**: Delete an order by its ID (only if the order status is pending).
 
-## **Project Setup**
+## server.js
+Contains the server code.
 
-### **Installation**
-1. **Clone the repository**:
-   ```bash
-   git clone <repository-url>
-   ```
-2. **Navigate to the project folder**:
-   ```bash
-   cd grubdash-backend
-   ```
-3. **Install dependencies**:
-   ```bash
-   npm install
-   ```
 
-### **Running the Server**
-Start the server by running:
-```bash
-npm start
-```
+## orders folder
 
-The server will run on `http://localhost:5000` (or a different port if set in the `.env` file).
+### orders.controller.js
+Contains the middleware functions and route handlers to list every order or a specific order, place a new order, update a certain order, and delete a specific order depending on the order's status. The middleware functions checks the data being sent using specific conditionals. Either a specific error message or the requested data is sent back to users based on the conditionals.
 
-### **Testing**
-To ensure the API is functioning correctly, run the test suite:
-```bash
-npm test
-```
+### orders.router.js
+Attatches the middleware functions and route handlers from the 'orders.controller.js' file and the 'methodNotAllowed' route handler to the '/orders' and '/orders/:orderId' paths.
 
-## **Technologies Used**
-- **Node.js**: JavaScript runtime for building server-side applications.
-- **Express.js**: Web framework for building RESTful APIs.
-- **Jest**: Testing framework used for unit and integration testing.
 
-## **Learning Outcomes**
-Through this project, the following skills were reinforced:
-- Building and testing APIs with **complex validation** and **error handling**.
-- Implementing **CRUD operations** using proper HTTP methods and routing.
-- Designing APIs using **RESTful design principles**.
-- Writing custom **middleware** to manage validation and error handling.
+## dishes folder
+
+### dishes.controller.js
+Contains the middleware functions and route handlers to list every dish or a specific dish, place a new dish, and update a certain dish. The middleware functions checks the data being sent using specific conditionals. Either a specific error message or the requested data is sent back to users based on the conditionals.
+
+### dishes.router.js
+Attatches the middleware functions and route handlers from the 'dishes.controller.js' file and the 'methodNotAllowed' route handler to the '/dishes' and '/dishes/:dishId' paths.
+
+
+## errors folder
+
+### errorHandler.js
+Contains the 'errorHandler' 'route handler' to display error messages to users.
+
+### methodNotAllowed.js
+Contains the 'methodNotAllowed' 'route handler' which displays an error message if users use the wrong HTTP request.
+
+### notFound.js
+Contains the 'notFound' 'route handler' which displays an error message if users a nonexistent URL path.
+
+
+## data folder
+
+### dishes-data.js
+Contains the 'dishes' data.
+
+### orders-data.js
+Contains the 'orders' data.
+
+
+## utils folder
+
+### nextId.js 
+Contains the 'nextId' 'route handler' which assigns a new 'id' to new dishes and orders.
+
+
+## test folder
+
+### dishes.router.test.js
+Tests for the dishes router.
+
+### orders-router-test.js
+Tests for the orders router.
+
+### make-test-app.js
+Tests for the app.js file.
